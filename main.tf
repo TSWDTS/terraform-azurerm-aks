@@ -476,6 +476,11 @@ resource "azurerm_kubernetes_cluster" "main" {
     pod_cidr            = var.net_profile_pod_cidr
     service_cidr        = var.net_profile_service_cidr
 
+    advanced_networking {
+      observability_enabled = true
+      security_enabled      = true
+    }
+
     dynamic "load_balancer_profile" {
       for_each = var.load_balancer_profile_enabled && var.load_balancer_sku == "standard" ? [
         "load_balancer_profile"

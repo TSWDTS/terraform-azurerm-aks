@@ -8,6 +8,7 @@ variable "resource_group_name" {
   description = "The existing resource group name to use"
 }
 
+
 variable "aci_connector_linux_enabled" {
   type        = bool
   default     = false
