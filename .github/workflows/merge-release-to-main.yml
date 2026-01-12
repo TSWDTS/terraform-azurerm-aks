@@ -1,0 +1,20 @@
+name: "RM: Merge Release/Hotfix to Main and Create Release"
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  call-merge-and-release-workflow:
+    uses: TSWDTS/Shared-GitHub-Actions/.github/workflows/common-merge-release-to-main.yml@main
+    with:
+      event_name: ${{ github.event_name }}
+      is_pr_merged: ${{ github.event.pull_request.merged || false }}
+      head_ref: ${{ github.event.pull_request.head.ref || '' }}
+      pr_number: ${{ github.event.pull_request.number || '' }}
+      pr_body: ${{ github.event.pull_request.body || '' }}
+    secrets: inherit
+    

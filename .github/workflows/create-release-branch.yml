@@ -1,0 +1,25 @@
+name: "RM: Create Release / Hotfix Branch"
+# This workflow is used to create a release or hotfix branch from the develop branch.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (e.g., 1.1.0 or 1.1.1 for hotfix)'
+        required: true
+        type: string
+      release_type:
+        description: 'Release type'
+        required: true
+        type: choice
+        options:
+          - production
+          - hotfix
+
+jobs:
+  call-create-release-workflow:
+    uses: TSWDTS/Shared-GitHub-Actions/.github/workflows/common-create-release-branch-workflow.yml@main
+    with:
+      version: ${{ github.event.inputs.version }}
+      release_type: ${{ github.event.inputs.release_type }}
+    secrets: inherit

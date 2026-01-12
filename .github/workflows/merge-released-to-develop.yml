@@ -1,0 +1,9 @@
+name: "RM: Merge Released branch to develop"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-merge-release-workflow:
+    uses: TSWDTS/Shared-GitHub-Actions/.github/workflows/common-merge-released-to-develop.yml@main
+    secrets: inherit
